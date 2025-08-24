@@ -1,26 +1,53 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Smooth scrolling for in-page section links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Nice gradient page background */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: 255 255 255;
+  --fg: 17 24 39; /* gray-900 */
+}
+.dark {
+  --bg: 3 7 18; /* gray-950 */
+  --fg: 229 231 235; /* gray-200 */
+}
+body {
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(99,102,241,0.08), transparent),
+              radial-gradient(1200px 600px at 90% 30%, rgba(236,72,153,0.08), transparent),
+              rgb(var(--bg));
+  color: rgb(var(--fg));
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Reusable utilities */
+.container {
+  @apply max-w-6xl mx-auto;
+}
+.section {
+  @apply py-20 md:py-28;
+}
+.h1 {
+  @apply text-4xl md:text-5xl font-bold tracking-tight leading-tight;
+}
+.h2 {
+  @apply text-2xl md:text-3xl font-semibold tracking-tight;
+}
+.p-muted {
+  @apply text-gray-600 dark:text-gray-300;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Card */
+.card {
+  @apply bg-white/70 dark:bg-white/5 backdrop-blur rounded-2xl shadow-soft border border-black/5 dark:border-white/10;
+}
+
+@layer utilities {
+  .shadow-soft {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
