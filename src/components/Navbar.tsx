@@ -11,7 +11,6 @@ const links = [
   { href: "#skills", label: "Skills" },
   { href: "#projects", label: "Projects" },
   { href: "#contact", label: "Contact" },
-  { href: "/resume", label: "Resume" },
 ];
 
 export default function Navbar() {
@@ -36,18 +35,34 @@ export default function Navbar() {
     >
       <nav className="container flex items-center justify-between py-3">
         <Link href="/" className="font-semibold text-lg">
-          <span className="text-brand">{"<"}</span> YourName <span className="text-brand">{"/>"}</span>
+          <span className="text-brand">{"<"}</span> YourName{" "}
+          <span className="text-brand">{"/>"}</span>
         </Link>
 
+        {/* Desktop Navbar */}
         <div className="hidden md:flex items-center gap-6">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="hover:text-brand transition">
+            <a
+              key={l.href}
+              href={l.href}
+              className="hover:text-brand transition"
+            >
               {l.label}
             </a>
           ))}
+          {/* Resume link → opens PDF in new tab */}
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-brand transition"
+          >
+            Resume
+          </a>
           <ThemeToggle />
         </div>
 
+        {/* Mobile Menu Button */}
         <button
           aria-label="Open Menu"
           className="md:hidden p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10"
@@ -57,6 +72,7 @@ export default function Navbar() {
         </button>
       </nav>
 
+      {/* Mobile Menu */}
       {open && (
         <div className="md:hidden border-t border-black/10 dark:border-white/10">
           <div className="container py-3 flex flex-col gap-3">
@@ -70,6 +86,16 @@ export default function Navbar() {
                 {l.label}
               </a>
             ))}
+            {/* Resume link for mobile */}
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="py-2 hover:text-brand transition"
+            >
+              Resume
+            </a>
             <ThemeToggle />
           </div>
         </div>
