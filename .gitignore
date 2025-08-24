@@ -1,8 +1,8 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
+# ====================================================
+# 🔁 Node.js Dependencies
+# ====================================================
+node_modules/
+.pnp/
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -10,32 +10,70 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
+# ====================================================
+# 🚀 Next.js Build Output
+# ====================================================
+.next/
+out/
+build/
+.next/cache/
 
-# next.js
-/.next/
-/out/
+# If using TurboRepo (monorepos)
+.turbo/
 
-# production
-/build
-
-# misc
-.DS_Store
+# ====================================================
+# 📦 Production or Generated
+# ====================================================
+dist/
+*.log
 *.pem
 
-# debug
+# ====================================================
+# ✅ TypeScript
+# ====================================================
+*.tsbuildinfo
+next-env.d.ts
+
+# ====================================================
+# 🧪 Testing & Coverage
+# ====================================================
+coverage/
+
+# ====================================================
+# 🔧 IDE & OS Metadata
+# ====================================================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ====================================================
+# 🛠 Debugging Logs
+# ====================================================
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
+pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# ====================================================
+# 🔐 Environment Variables
+# ====================================================
+.env
+.env.*
+!.env.example  # allow example env files if needed
 
-# vercel
-.vercel
+# ====================================================
+# ☁️ Deployment Platforms
+# ====================================================
+.vercel/
+.netlify/
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# ====================================================
+# 🧵 Tailwind (Optional Cache)
+# ====================================================
+tailwind.config.js
+tailwind.config.cjs
+tailwind.config.ts
+postcss.config.js
+postcss.config.cjs
+postcss.config.ts
