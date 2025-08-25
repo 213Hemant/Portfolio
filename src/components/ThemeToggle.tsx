@@ -12,14 +12,32 @@ export default function ThemeToggle() {
   if (!mounted) return null;
   const current = theme === "system" ? systemTheme : theme;
 
+  const isDark = current === "dark";
+
   return (
     <button
       aria-label="Toggle theme"
-      onClick={() => setTheme(current === "dark" ? "light" : "dark")}
-      className="inline-flex items-center gap-2 rounded-xl px-3 py-2 hover:bg-black/5 dark:hover:bg-white/10"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      className={
+        "relative inline-flex items-center justify-center rounded-full p-2 " +
+        "transition-all duration-300 focus:outline-none " +
+        (isDark
+          ? "bg-black/40 hover:bg-black/60 shadow-[0_0_20px_-4px_rgba(236,72,153,0.45)]"
+          : "bg-white/70 hover:bg-white/90 shadow-[0_0_18px_-4px_rgba(59,130,246,0.45)]")
+      }
     >
-      {current === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-      <span className="text-sm">{current === "dark" ? "Light" : "Dark"}</span>
+      {/* Icon */}
+      {isDark ? (
+        <Sun
+          size={18}
+          className="text-yellow-400 transition-transform duration-300 hover:rotate-90"
+        />
+      ) : (
+        <Moon
+          size={18}
+          className="text-blue-600 transition-transform duration-300 hover:-rotate-90"
+        />
+      )}
     </button>
   );
 }
