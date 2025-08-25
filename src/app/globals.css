@@ -2,12 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------------ */
+/* 🌐 Global Base Styling   */
+/* ------------------------ */
+
 /* Smooth scrolling for in-page section links */
 html {
   scroll-behavior: smooth;
 }
 
-/* Nice gradient page background */
+/* Light & Dark mode color variables */
 :root {
   --bg: 255 255 255;
   --fg: 17 24 39; /* gray-900 */
@@ -16,37 +20,136 @@ html {
   --bg: 3 7 18; /* gray-950 */
   --fg: 229 231 235; /* gray-200 */
 }
+
 body {
-  background: radial-gradient(1200px 600px at 10% 10%, rgba(99,102,241,0.08), transparent),
-              radial-gradient(1200px 600px at 90% 30%, rgba(236,72,153,0.08), transparent),
-              rgb(var(--bg));
+  background: radial-gradient(
+      1200px 600px at 10% 10%,
+      rgba(99, 102, 241, 0.08),
+      transparent
+    ),
+    radial-gradient(
+      1200px 600px at 90% 30%,
+      rgba(236, 72, 153, 0.08),
+      transparent
+    ),
+    rgb(var(--bg));
   color: rgb(var(--fg));
+  cursor: none;
 }
 
-/* Reusable utilities */
+/* ------------------------ */
+/* 📦 Reusable Utilities    */
+/* ------------------------ */
+
 .container {
   @apply max-w-6xl mx-auto;
 }
+
 .section {
   @apply py-20 md:py-28;
 }
+
 .h1 {
   @apply text-4xl md:text-5xl font-bold tracking-tight leading-tight;
 }
+
 .h2 {
   @apply text-2xl md:text-3xl font-semibold tracking-tight;
 }
+
 .p-muted {
   @apply text-gray-600 dark:text-gray-300;
 }
 
-/* Card */
+/* ------------------------ */
+/* 💳 Card Styling          */
+/* ------------------------ */
+
 .card {
   @apply bg-white/70 dark:bg-white/5 backdrop-blur rounded-2xl shadow-soft border border-black/5 dark:border-white/10;
 }
 
+/* Custom soft shadow utility */
 @layer utilities {
   .shadow-soft {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
   }
+}
+
+/* ------------------------ */
+/* ✨ Animations & Effects  */
+/* ------------------------ */
+
+/* Blobby background movement */
+@keyframes blob {
+  0%,
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -20px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 30px) scale(0.9);
+  }
+}
+.animate-blob {
+  animation: blob 8s infinite;
+}
+
+/* Floating animation (slow hover rise) */
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.animate-float-slow {
+  animation: float-slow 4s ease-in-out infinite;
+}
+
+/* Hover zoom + orange glow effect */
+.glow-tile {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glow-tile:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px 5px rgba(255, 165, 0, 0.4); /* Orange glow */
+}
+
+/* ------------------------ */
+/* 🧡 Neon Cursor Effect    */
+/* ------------------------ */
+.neon-cursor {
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  pointer-events: none;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+  z-index: 9999;
+}
+
+/* Light mode styling */
+:root .neon-cursor {
+  background: rgba(255, 102, 0, 0.5); /* Brighter orange */
+  border: 1px solid rgba(255, 102, 0, 0.6);
+  box-shadow:
+    0 0 8px 4px rgba(255, 102, 0, 0.4),
+    0 0 18px 10px rgba(255, 102, 0, 0.25);
+  mix-blend-mode: normal; /* Don't blend — makes it visible on light BG */
+}
+
+/* Dark mode styling */
+.dark .neon-cursor {
+  background: rgba(255, 165, 0, 0.25);
+  border: 1px solid rgba(255, 165, 0, 0.4);
+  box-shadow:
+    0 0 6px 2px rgba(255, 165, 0, 0.3),
+    0 0 12px 6px rgba(255, 165, 0, 0.2);
+  mix-blend-mode: lighten;
 }
