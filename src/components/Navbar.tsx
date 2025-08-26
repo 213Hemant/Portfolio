@@ -33,11 +33,16 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <nav className="container flex items-center justify-between py-3">
-        <Link href="/" className="font-semibold text-lg">
+            <nav className="container flex items-center justify-between py-3">
+        {/* Logo → scrolls to top instead of redirect */}
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="font-semibold text-lg flex items-center"
+        >
           <span className="text-brand">{"<"}</span> YourName{" "}
           <span className="text-brand">{"/>"}</span>
-        </Link>
+        </button>
+
 
         {/* Desktop Navbar */}
         <div className="hidden md:flex items-center gap-6">
@@ -46,7 +51,7 @@ export default function Navbar() {
               key={l.href}
               href={l.href}
               className={
-                "dark:text-gray-200 transition-colors duration-200 " +
+                "text-gray-800 dark:text-gray-200 transition-colors duration-200 " +
                 "hover:text-blue-600 " +
                 "hover:shadow-[0_10px_30px_-14px_rgba(59,130,246,0.35)] " +
                 "py-1 px-1"
@@ -87,7 +92,9 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <motion.div
         initial={{ height: 0, opacity: 0 }}
-        animate={open ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+        animate={
+          open ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }
+        }
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
         className="md:hidden overflow-hidden border-t border-gray-300 dark:border-white/10"
         aria-hidden={!open}
