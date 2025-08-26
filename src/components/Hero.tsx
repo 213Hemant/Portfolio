@@ -87,30 +87,20 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="relative"
           >
-            <div className="card glow-tile p-6 flex items-center justify-center h-72 transition-all duration-300">
-              <div className="text-center">
-                {/* 🔲 Placeholder for your profile image */}
- {/* <img src="/OldPhotoAI-2025-03-18.png" alt="Your Name" className="mx-auto h-28 w-28 rounded-full object-cover" />   */}
-                         <div className="flex justify-center">
-  <Image
-    src="/OldPhotoAI-2025-03-18.png"
-    alt="Your Name"
-    width={112}
-    height={112}
-    className="rounded-full object-cover"
-  />
-</div>
-
-                                       {/* Replace above div with: 
-                    <img src="public\OldPhotoAI-2025-03-18.png" alt="Your Name" 
-                         className="mx-auto h-28 w-28 rounded-full object-cover" /> 
-                */}
-
-                <p className="mt-4 font-medium">Aspiring Software Engineer</p>
-                <p className="p-muted text-sm">
-                  Next.js • TypeScript • Tailwind • Node
-                </p>
-              </div>
+            <div className="card glow-tile p-4 flex flex-col items-center justify-center h-96 w-96 max-w-full mx-auto transition-all duration-300 rounded-xl shadow-lg bg-white dark:bg-gray-900">
+              <Image
+                src="/OldPhotoAI-2025-03-18.png"
+                alt="Your Name"
+                width={330}
+                height={180}
+                className="rounded-full object-cover shadow-md"
+              />
+              <p className="mt-6 text-lg font-semibold text-gray-900 dark:text-white">
+                Aspiring Software Engineer
+              </p>
+              <p className="p-muted text-sm mt-2 text-gray-600 dark:text-gray-400">
+                Next.js • TypeScript • Tailwind • Node
+              </p>
             </div>
           </motion.div>
         </div>

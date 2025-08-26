@@ -15,26 +15,74 @@ html {
 :root {
   --bg: 255 255 255;
   --fg: 17 24 39; /* gray-900 */
+  --accent1: 99 102 241; /* Indigo */
+  --accent2: 236 72 153; /* Pink */
+  --accent3: 16 185 129; /* Emerald */
+  --noise-opacity-light: 0.03;
+  --noise-opacity-dark: 0.06;
 }
 .dark {
   --bg: 3 7 18; /* gray-950 */
   --fg: 229 231 235; /* gray-200 */
+  --noise-opacity-light: 0.06;
+  --noise-opacity-dark: 0.1;
 }
 
 body {
-  background: radial-gradient(
-      1200px 600px at 10% 10%,
-      rgba(99, 102, 241, 0.08),
-      transparent
-    ),
-    radial-gradient(
-      1200px 600px at 90% 30%,
-      rgba(236, 72, 153, 0.08),
-      transparent
-    ),
-    rgb(var(--bg));
+  background-color: rgb(var(--bg));
   color: rgb(var(--fg));
   cursor: none;
+
+  /* Layered radial gradients for colorful glowing spots */
+  background-image:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(var(--accent1), 0.12),
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(var(--accent2), 0.12),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 50% 80%,
+      rgba(var(--accent3), 0.1),
+      transparent 70%
+    ),
+
+    /* Subtle noise overlay for texture */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' fill='none'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch' /%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' fill='white' fill-opacity='0.05' /%3E%3C/svg%3E"),
+    
+    /* fallback plain background color */
+    rgb(var(--bg));
+  
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
+  background-size: 600px 600px, 600px 600px, 800px 800px, auto;
+}
+
+/* Dark mode tweak: slightly stronger noise and richer glows */
+.dark body {
+  background-image:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(var(--accent1), 0.18),
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(var(--accent2), 0.18),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 50% 80%,
+      rgba(var(--accent3), 0.15),
+      transparent 70%
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' fill='none'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch' /%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' fill='white' fill-opacity='0.08' /%3E%3C/svg%3E"),
+    rgb(var(--bg));
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
+  background-size: 600px 600px, 600px 600px, 800px 800px, auto;
 }
 
 /* ------------------------ */
@@ -82,8 +130,7 @@ body {
 
 /* Blobby background movement */
 @keyframes blob {
-  0%,
-  100% {
+  0%, 100% {
     transform: translate(0px, 0px) scale(1);
   }
   33% {
@@ -99,8 +146,7 @@ body {
 
 /* Floating animation (slow hover rise) */
 @keyframes float-slow {
-  0%,
-  100% {
+  0%, 100% {
     transform: translateY(0px);
   }
   50% {
@@ -144,7 +190,6 @@ body {
   outline: none;
 }
 
-
 /* ------------------------ */
 /* 🧡 Neon Cursor Effect    */
 /* ------------------------ */
@@ -178,5 +223,3 @@ body {
     0 0 12px 6px rgba(255, 165, 0, 0.2);
   mix-blend-mode: lighten;
 }
-
-

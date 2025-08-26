@@ -61,3 +61,5 @@ export const projects: Project[] = [
     image: "/images/projects/algo-visualizer.jpg",
   },
 ];
+
+
